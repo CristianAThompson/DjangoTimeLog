@@ -4,7 +4,6 @@ from django.http import HttpResponse
 import json
 
 def index(request):
-    # return HttpResponse("Hello, world. You're at the Time Logging index.")
     return render(request, 'index.html')
 
 def update_times(request):

@@ -10,6 +10,10 @@
         margin: 0 auto;
         padding: 20px;
       }
+      .main-body {
+        opacity: 1;
+        transition: opacity ease-in-out 0.5s;        
+      }
       button {
         height: 36px;
         border-radius: 3.25px;
@@ -27,27 +31,58 @@
       #worked {
         list-style-type: circle;
       }
+      #popup {
+        background: rgba(255, 255, 255, 0.9);
+        height: 700px;
+        width: 800px;
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        transition: all ease-in-out 0.5s;
+        opacity: 1;
+      }
+      .popup-hidden {
+        height: 0 !important;
+        opacity: 0 !important;
+      }
+      .body-hidden {
+        opacity: 0.2 !important;
+      }
+      #popup button {
+        display: block;
+        margin: 0 auto;
+      }
+      #popup-prompt {
+        text-align: center;
+        padding: 20px;
+      }
     </style>
   </head>
   <body>
     {% csrf_token %}
-    <h1>Track Your Work</h1>
-    <form>
-      <p>Project Title: <input id='title' type="text" name="title"></p>
-    </form>
-    <p>Seconds: <span id="second"></span></p>
-    <p>Minutes: <span id="minute">None Yet!</span></p>
-    <p>Hours: <span id="hour">None Yet!</span></p>
-    <div>
-      <button type="button" id="start">Start</button>
-      <button type="button" id="stop">Stop</button>
-      <button type="button" id="clear">Clear</button>
+    <div class="main-body">
+      <h1>Track Your Work</h1>
+      <form id="project-title">
+        <p>Project Title: <input id='title' type="text" name="title"></p>
+      </form>
+      <p>Seconds: <span id="second"></span></p>
+      <p>Minutes: <span id="minute">None Yet!</span></p>
+      <p>Hours: <span id="hour">None Yet!</span></p>
+      <div>
+        <button type="button" id="start-prompt">Start</button>
+        <button type="button" id="stop">Stop</button>
+        <button type="button" id="clear">Clear</button>
+      </div>
+      <h3>How long you've worked: <span id="workedTotal"></span></h3>
+      <ul id="worked">
+      </ul>      
     </div>
-    <h3>How long you've worked: <span id="workedTotal"></span></h3>
-    <ul id="worked">
-    </ul>
-    <!-- <p>Key pressed: </p>
-    <div id="controls">None Yet!</div> -->
+    <div class="popup-hidden" id="popup">
+      <div id="popup-prompt"></div>
+      <button type="button" id="start">Start</button>
+      <button type="button" id="cancel">Cancel</button>              
     </div>
   </body>
   <script
