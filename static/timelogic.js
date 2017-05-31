@@ -228,13 +228,13 @@ document.getElementById('stop').onclick = function() {
 
         // handle a successful response
         success : function(json) {
-            console.log(json); // log the returned json to the console
-            $('<li>' + json + '</li>').prependTo(workedList);
-            console.log("success"); // another sanity check
+          console.log(json); // log the returned json to the console
+          $('<li>' + json + '</li>').prependTo(workedList);
+          console.log("success"); // another sanity check
         },
         // handle a non-successful response
         error : function(xhr,errmsg,err) {
-            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         }
       });
       updateTotalTime();
@@ -247,7 +247,7 @@ document.getElementById('stop').onclick = function() {
 }
 
 document.getElementById('clear-prompt').onclick = function() {
-  let titleText = "Are you sure you want to clear the log?(Nothing will be deleted)"
+  let titleText = "Are you sure you want to clear the visible log?"
   let buttonText = "Clear";
   if (!actualLoop) {
     showPopup(buttonText, titleText);
