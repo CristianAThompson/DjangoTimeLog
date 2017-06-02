@@ -30,6 +30,7 @@ const minutestoAppend = document.getElementById('minute');
 const hourstoAppend = document.getElementById('hour');
 const workedList = document.getElementById('worked');
 const popup = document.getElementById('popup');
+const popupButton = document.getElementsByClassName('popup-button');
 const body = document.getElementsByClassName('main-body')[0];
 let title = document.getElementById('title');
 let actualLoop;
@@ -85,6 +86,9 @@ let showPopup = function(buttonText, titleText) {
   document.getElementsByClassName('popup-button')[0].id = buttonText;
   document.getElementsByClassName('popup-button')[0].innerHTML = buttonText;
   popup.classList.remove('popup-hidden');
+  for (let i = 0; i < popupButton.length; i++) {
+    popupButton[i].classList.remove('popup-hidden');
+  }
   body.classList.add('body-hidden');
 };
 
@@ -93,6 +97,9 @@ let hidePopup = function() {
   body.classList.remove('body-hidden');
   document.getElementsByClassName('popup-button')[0].id = "";
   document.getElementById('popup-prompt').innerHTML = "";
+  for (let i = 0; i < popupButton.length; i++) {
+    popupButton[i].classList.add('popup-hidden');
+  }
 };
 
 let clearLog = function() {

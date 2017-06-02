@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body {
-        width: 800px;
-        max-width: 100%;
-        margin: 0 auto;
         padding: 20px;
       }
       .main-body {
@@ -23,27 +20,18 @@
       button:hover {
         background: rgba(34, 177, 152, 0.25);
       }
-      .randBlock {
-        min-height: 50px;
-        min-width: 50px;
-        z-index: -10;
-        position: absolute;
-      }
       #worked {
         list-style-type: circle;
       }
       #popup {
         background: rgba(255, 255, 255, 0.9);
         margin-top: 30px;
-        height: 700px;
-        width: 800px;
-        max-height: 100%;
-        max-width: 100%;
+
         position: absolute;
         z-index: 10;
-        top: 50%;
+        top: 15%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translateX(-50%);
         transition: all ease-in-out 0.5s;
         opacity: 1;
       }
@@ -61,6 +49,24 @@
       #popup-prompt {
         text-align: center;
         padding: 20px;
+      }
+      @media (max-width: 449px){
+        #popup {
+          width: 450px;
+          height: 300px;
+          max-width: 100%;
+        }
+      }
+      @media (min-width: 450px) {
+        body {
+          width: 800px;
+          max-width: 100%;
+          margin: 0 auto;
+        }
+        #popup {
+          height: 600px;
+          width: 800px;
+        }
       }
     </style>
   </head>
@@ -85,8 +91,8 @@
     </div>
     <div class="popup-hidden" id="popup">
       <div id="popup-prompt"></div>
-      <button type="button" id="start" class="popup-button">Start</button>
-      <button type="button" id="Cancel" class="popup-button">Cancel</button>
+      <button type="button" id="start" class="popup-button popup-hidden">Start</button>
+      <button type="button" id="Cancel" class="popup-button popup-hidden">Cancel</button>
     </div>
   </body>
   <script
