@@ -1,3 +1,20 @@
+const secondsToAppend = document.getElementById('second');
+const minutestoAppend = document.getElementById('minute');
+const hourstoAppend = document.getElementById('hour');
+const workedList = document.getElementById('worked');
+const popup = document.getElementById('popup');
+const popupButton = document.getElementsByClassName('popup-button');
+const body = document.getElementsByClassName('main-body')[0];
+let title = document.getElementById('title');
+let actualLoop;
+let currentWork = [];
+let currentTitle;
+let timeStart, timeEnd, verifiedTime, startDate, endDate;
+let minutes, hours, afterNoon;
+let totalHours = 0;
+let totalMinutes = 0;
+let totalSeconds = 0;
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -25,21 +42,6 @@ $.ajaxSetup({
       }
   }
 });
-const secondsToAppend = document.getElementById('second');
-const minutestoAppend = document.getElementById('minute');
-const hourstoAppend = document.getElementById('hour');
-const workedList = document.getElementById('worked');
-const popup = document.getElementById('popup');
-const popupButton = document.getElementsByClassName('popup-button');
-const body = document.getElementsByClassName('main-body')[0];
-let title = document.getElementById('title');
-let actualLoop;
-let currentWork = [];
-let timeStart, timeEnd, verifiedTime, startDate, endDate;
-let minutes, hours, afterNoon;
-let totalHours = 0;
-let totalMinutes = 0;
-let totalSeconds = 0;
 
 let formatTime = function(hoursToVerify, minutesToVerify) {
   afterNoon = "PM";
@@ -151,6 +153,22 @@ let createLoop = function() {
   }, 10);
 };
 
+let startTimeLoop = function() {
+  if (!actualLoop){
+    title.disabled = true;
+    createLoop();
+    let hours = new Date().getHours();
+    let minutes = new Date().getMinutes();
+    formatTime(hours, minutes);
+    timeStart = verifiedTime;
+    minutestoAppend.innerHTML = "None Yet!";
+    hourstoAppend.innerHTML = "None Yet!";
+    startDate = formatDate();
+  } else {
+    return;
+  }
+}
+
 document.getElementById('start-prompt').onclick = function() {
    if (!actualLoop){
      let titleText;
@@ -160,23 +178,15 @@ document.getElementById('start-prompt').onclick = function() {
        titleText = "<h3>Default</h3> is the correct title for this project?";
      }
      let buttonText = "Start";
-     showPopup(buttonText, titleText);
-     document.getElementById('Start').onclick = function() {
-       if (!actualLoop){
-         hidePopup();
-         title.disabled = true;
-         createLoop();
-         let hours = new Date().getHours();
-         let minutes = new Date().getMinutes();
-         formatTime(hours, minutes);
-         timeStart = verifiedTime;
-         minutestoAppend.innerHTML = "None Yet!";
-         hourstoAppend.innerHTML = "None Yet!";
-         startDate = formatDate();
-       } else {
-         return;
-       }
-     };
+     if (currentTitle === title.value && title.value !== "") {
+      startTimeLoop();
+      } else {
+        showPopup(buttonText, titleText);
+        document.getElementById('Start').onclick = function() {
+          hidePopup();
+          startTimeLoop();
+        };
+      }
   } else {
     return;
   }
@@ -260,6 +270,7 @@ document.getElementById('stop').onclick = function() {
       });
       updateTotalTime();
     };
+    currentTitle = title.value;
     title.disabled = false;
     currentWork = [];
   } else {
@@ -291,6 +302,10 @@ $('#project-title').on('keyup keypress', function(event) {
     if (!actualLoop) {
       document.getElementById('start-prompt').click();
     }
+    return false;
+  }
+  if (enterKey === 32) {
+    event.preventDefault();
     return false;
   }
 });
