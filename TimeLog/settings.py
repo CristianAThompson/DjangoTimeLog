@@ -25,7 +25,7 @@ SECRET_KEY = '7(*d61az0r(rn3+_0348s6=(+j3e+u4dwiuo1h6j((t(74=y%r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['52.10.132.146', 'http://ec2-52-10-132-146.us-west-2.compute.amazonaws.com/']
+ALLOWED_HOSTS = ['52.10.132.146', 'ec2-52-10-132-146.us-west-2.compute.amazonaws.com', 'localhost']
 
 
 # Application definition
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'TimeLog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['LogApp/templates'],
+        'DIRS': ['LogApp/templates', os.path.join(BASE_DIR, 'LogApp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

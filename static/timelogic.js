@@ -294,6 +294,11 @@ document.getElementById('clear-prompt').onclick = function() {
   }
 };
 
+window.onbeforeunload = confirmExit;
+function confirmExit() {
+    return "You have attempted to leave this page. Are you sure?";
+}
+
 
 $('#project-title').on('keyup keypress', function(event) {
   var enterKey = event.keyCode || event.which;
