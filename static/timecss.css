@@ -2,8 +2,14 @@ button {
   border-radius: 3.25px;
   background: rgba(0, 0, 0, 0.05);
 }
-button:hover {
+#start-prompt:hover {
   background: rgba(34, 177, 152, 0.25);
+}
+#stop:hover {
+  background: rgba(168, 58, 39, 0.25);
+}
+#clear-prompt:hover {
+  background: rgba(29, 21, 181, 0.25);
 }
 .main-body {
   opacity: 1;
@@ -18,7 +24,6 @@ button:hover {
 #popup {
   background: rgba(255, 255, 255, 0.9);
   margin-top: 30px;
-
   position: absolute;
   z-index: 10;
   top: 15%;
@@ -30,7 +35,7 @@ button:hover {
 .popup-hidden {
   height: 0 !important;
   opacity: 0 !important;
-  left: 3000px !important;
+  right: 3000px !important;
 }
 .body-hidden {
   opacity: 0.2 !important;
@@ -58,9 +63,8 @@ button:hover {
     width: 100%;
   }
   #popup {
-    width: 450px;
+    width: 100%;
     height: 300px;
-    max-width: 100%;
   }
   #title {
     min-height: 40px;
