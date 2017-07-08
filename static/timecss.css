@@ -67,8 +67,11 @@ button {
     height: 300px;
   }
   #title {
-    min-height: 40px;
+    min-height: 35px;
     min-width: 50%;
+    font-size: 18px;
+    text-align: center;
+    border-style: inset;
   }
   #project-title {
     width: 100%;
