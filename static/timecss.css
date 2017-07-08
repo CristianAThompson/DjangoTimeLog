@@ -67,8 +67,7 @@ button {
   }
   #popup {
     width: 100%;
-    height: auto;
-    max-height: 350px;
+    height: 350px;
   }
   #title {
     min-height: 35px;
