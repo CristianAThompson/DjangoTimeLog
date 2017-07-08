@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static "timecss.css" %}"></style>
+{% endblock %}
+
+{% block content %}
+  {% csrf_token %}
+  <div class="main-body">
+    <h1>Track Your Work</h1>
+    <form id="project-title">
+      <p>Project Title: <input id='title' type="text" name="title"></p>
+    </form>
+    <p>Seconds: <span id="second"></span></p>
+    <p>Minutes: <span id="minute">None Yet!</span></p>
+    <p>Hours: <span id="hour">None Yet!</span></p>
+    <div>
+      <button type="button" id="start-prompt">Start</button>
+      <button type="button" id="stop">Stop</button>
+      <button type="button" id="clear-prompt">Clear</button>
+    </div>
+    <h3>How long you've worked: <span id="workedTotal"></span></h3>
+    <ul id="worked">
+    </ul>
+  </div>
+  <div class="popup-hidden" id="popup">
+    <div id="popup-prompt"></div>
+    <button type="button" id="start" class="popup-button popup-hidden">Start</button>
+    <button type="button" id="Cancel" class="popup-button popup-hidden">Cancel</button>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static "timelogic.js" %}"></script>
+{% endblock %}
