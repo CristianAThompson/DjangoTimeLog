@@ -37,7 +37,8 @@ button {
 .popup-hidden {
   height: 0 !important;
   opacity: 0 !important;
-  right: 3000px !important;
+  left: -3000px !important;
+  bottom: -2000px !important;
 }
 .body-hidden {
   opacity: 0.06 !important;
